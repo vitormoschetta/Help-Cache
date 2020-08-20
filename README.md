@@ -3,7 +3,6 @@
 ```
 public class Product
 {
-    private const string keyProductsCache = "productListCache";
     private readonly IMemoryCache _cache;
     private readonly ApplicationDbContext _context;
     
@@ -15,7 +14,7 @@ public class Product
     
     public IEnumerable<Product> GetProducts()
     {            
-        if (_cache.TryGetValue(keyProductsCache, out IEnumerable<Product> products))
+        if (_cache.TryGetValue("listaProdutosCache", out IEnumerable<Product> products))
         {
             if (products != null && products.Count > 0)
                 return products;                     
@@ -23,9 +22,11 @@ public class Product
         
         products = _context.Product.ToList();
         
-        _cache.Set(keyProductsCache, products, DateTime.Now.AddMinutes(30));
+        _cache.Set("listaProdutosCache", products, DateTime.Now.AddMinutes(30));
         
         return products        
     }
 }
 ```
+
+
