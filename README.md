@@ -29,12 +29,10 @@ public class Product
 }
 ```
 
-Vamos identificar as partes do nosso código. 
-
-A linha a seguir seta a lista em memória:
-
+Vamos identificar as partes do nosso código:
 ```
 _cache.Set("listaProdutosCache", products, DateTime.Now.AddMinutes(30));  
 ```
-
+O código acima seta a nossa lista (products) em memória, dando a ela uma chave de identificação chamada "listaProdutosCache".
+O terceiro parâmetro é o tempo que a lista deve permanecer em memória. Em nosso exemplo, 30 minutos. 
 
