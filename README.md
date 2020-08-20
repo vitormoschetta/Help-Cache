@@ -22,11 +22,19 @@ public class Product
         
         products = _context.Product.ToList();
         
-        _cache.Set("listaProdutosCache", products, DateTime.Now.AddMinutes(30));
+        _cache.Set("listaProdutosCache", products, DateTime.Now.AddMinutes(30));       
         
         return products        
     }
 }
+```
+
+Vamos identificar as partes do nosso código. 
+
+A linha a seguir seta a lista em memória:
+
+```
+_cache.Set("listaProdutosCache", products, DateTime.Now.AddMinutes(30));  
 ```
 
 
