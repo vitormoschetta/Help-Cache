@@ -1,5 +1,11 @@
 # Help-Cache
 
+O cache Im Memory do Asp.NET Core ocorre na memória do servidor. Isso quer dizer que esse mesmo cache é compartilhado por todos os usuários do sistema. 
+Isso pode ser um problema se os dados em cache forem formados através de parâmetros passados pelo usuário. 
+Se cada usuário passa parâmetros diferentes, o cache estará sempre sendo sobrescrito, não melhorando em nada a performance da aplicação, pelo contrário. 
+
+O exemplo a baixo apenas verifica se o cache existe, e mostra. Independente de parâmetros.
+
 ```
 public class Produto
 {
