@@ -1,6 +1,6 @@
 # Help-Cache
 
-O cache Im Memory do Asp.NET Core ocorre na memória do servidor. Isso quer dizer que esse mesmo cache é compartilhado por todos os usuários do sistema. 
+O cache In Memory do Asp.NET Core ocorre na memória do servidor. Isso quer dizer que esse mesmo cache é compartilhado por todos os usuários do sistema. 
 Isso pode ser um problema se os dados em cache forem formados através de parâmetros passados pelo usuário. 
 Se cada usuário passa parâmetros diferentes, o cache estará sempre sendo sobrescrito, não melhorando em nada a performance da aplicação, pelo contrário. 
 
@@ -60,3 +60,10 @@ memória, que na verdade é nossa lista de produtos 'IEnumerable<Produto> produt
     
 O Método 'TryGetValue', além de efetivar uma saída por referência a lista de produtos, retorna um _bool_ para a variável 'meuCache'. Retorna _true_ caso encontre um objeto 
 em memória com o nome da chave especificado. Com esse retorno fazemos a validação, se existir e não for _null_ ou vazia, retornamos a lista em memória.
+
+
+## View Component
+
+<cache expires-on="@TimeSpan.FromSeconds(600)">
+    @await Component.InvokeAsync("BlogPosts", new { tag = "popular" })
+</cache>
