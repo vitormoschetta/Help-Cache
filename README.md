@@ -114,6 +114,9 @@ public IEnumerable<Produto> ListarProdutos(string grupo, string usuario)
 }
 ```
 
+Obs: Quando se tem apenas um servidor de aplicação, dependendo dos recursos de memória de da quantidade de usuários, podemos chegar a um ponto crítico com sobrecarga da memória.
+Isso pode ser contornado ao usar uma tabela temporária no lugar do cache. 
+
 
 
 ## Cache de páginas parciais com Tag Helpers
