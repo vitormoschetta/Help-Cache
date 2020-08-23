@@ -116,8 +116,8 @@ public IEnumerable<Produto> ListarProdutos(string grupo, string usuario)
 
 
 
-
-## View Component
+## Cache de páginas parciais com Tag Helpers
+Usando View Component para renderizar PartialView
 ```
 <cache expires-on="@TimeSpan.FromSeconds(600)">
     @await Component.InvokeAsync("BlogPosts", new { tag = "popular" })
