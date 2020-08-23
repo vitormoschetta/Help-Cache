@@ -63,7 +63,8 @@ em mem√≥ria com o nome da chave especificado. Com esse retorno fazemos a valida√
 
 
 ## View Component
-
+```
 <cache expires-on="@TimeSpan.FromSeconds(600)">
     @await Component.InvokeAsync("BlogPosts", new { tag = "popular" })
 </cache>
+```
