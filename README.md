@@ -126,3 +126,28 @@ Usando View Component para renderizar PartialView
     @await Component.InvokeAsync("BlogPosts", new { tag = "popular" })
 </cache>
 ```
+
+## Cache Distribuido Sql Server
+
+Add o pacote ao projeto:
+```
+dotnet add package Microsoft.Extensions.Caching.SqlServer --version 3.1.*
+```
+
+Instalar a ferramento cli:
+```
+dotnet tool install --global dotnet-sql-cache
+```
+
+Add Tabela Cache no BD via CLI:
+
+###### LocalDB:
+```
+dotnet sql-cache create "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SisaCache;Integrated Security=True; user=root; password=123456" dbo BaseEletronica
+```
+
+###### Sql Express:
+```
+dotnet sql-cache create "Server=localhost\SQLEXPRESS;Database=SisaCache; user=sa; password=123456" dbo BaseEletronica
+```
+
