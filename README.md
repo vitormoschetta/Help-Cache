@@ -151,3 +151,5 @@ dotnet sql-cache create "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Sisa
 dotnet sql-cache create "Server=localhost\SQLEXPRESS;Database=SisaCache; user=sa; password=123456" dbo BaseEletronica
 ```
 
+Obs: O BD precisa já existir antes do comando acima. 
+'BaseEletronica' é o nome da tabela que será criada.
