@@ -63,7 +63,7 @@ Escreve apenas no cache. As informações são gravadas em uma base de dados de 
 
 Para o segundo cenário o risco é mais alto, uma vez que um desligamento de máquina resultaria em perda total dos dados ainda não persistidos em uma base segura. 
 
-Por este motivo essa estratégia só possui sentido se utilizarmos **Servidores de Cache**, ou seja, o cache fica na memória de servidores próprios para esta tarefa. Eles replicam a mesma informação. Se possível, estes servidores devem ser mantidos em áreas geográficas diferentes.
+Por este motivo essa estratégia só possui sentido se utilizarmos **Servidores de Cache**, ou seja, o cache fica na memória de servidores próprios para esta tarefa. Eles replicam a mesma informação. Se possível, estes servidores devem ser mantidos em diferentes áreas geográficas.
 
 Perceba agora que podemos dividir em duas novas categorias os tipos/estratégias de cache: **Cache Local** e **Cache Distribuido**
 
