@@ -26,14 +26,14 @@ Com os avanços tecnológicos, vários tipos de cache foram desenvolvidos. Atual
 <br>
 
 
-## Cache de sistemas
-É sobre cache de sistemas e/ou servidores que vamos tratar.  
+## Cache de aplicação
+É sobre cache de aplicação e/ou servidores que vamos tratar.  
 Como podemos melhorar o desempenho de nossas aplicações utilizando estratégias de cache?
 
 Dependendo da quantidade e/ou do tipo de informações pesquisadas, uma consulta no banco de dados pode se tornar lenta. Repetir essas consultas constantemente certamente se tornará algo inviável.
 
-### Como o cache de dados em um sistema funciona?
-Vamos montar um cenário para entender como o cache é implementado na sua forma mais básica:
+### Como o cache de aplicação funciona?
+Vamos montar um cenário para entender como o cache de aplicação é implementado na sua forma mais básica:
 
 Os dados são gravados em uma memória permanente (banco de dados por exemplo). O Administrador configura que uma determinada consulta de dados precisará primeiro passar pelo cache. Existindo as informações nesse cache, devem elas serem retornadas ao usuário dali mesmo. Não existindo, o sistema deverá buscá-las no banco de dados, então gravá-las em cache e retornar ao usuário. Na próxima consulta as informações já estarão em cache. 
 
