@@ -60,6 +60,9 @@ Uma alteração é gravada tanto na base de dados quanto no _cache_.
 Vantagem: Alto nível de disponibilidade e consistência de dados.  
 Desvantagem: Aumento de latência na escrita.
 
+
+<a name="Write-Back"></a>
+
 - **Write-Back**
 Escreve apenas no _cache_. As informações são gravadas em uma base de dados de tempos em tempos, conforme configurado.  
 
@@ -90,7 +93,7 @@ O _cache_ pode ser **Local** ou **Distribuído** (Servidor(es) de _Cache_).
 
 Se os dados forem **passíveis de alteração** o _cache_ precisa ter um **tempo de expiração** para ser renovado. 
 
-Se a menor **Inconsistência de Dados** for algo prejudicial ao negócio, como alternativa ao **tempo de expiração**, podemos implementar estratégias mais avançadas de _cache_, **[Write-Through](#Write-Through)** e **Write-Back** por exemplo.
+Se a menor **Inconsistência de Dados** for algo prejudicial ao negócio, como alternativa ao **tempo de expiração**, podemos implementar estratégias mais avançadas de _cache_, **[Write-Through](#Write-Through)** e **[Write-Back](#Write-Back)** por exemplo.
 <br>
 <br>
 
