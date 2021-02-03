@@ -86,9 +86,9 @@ _Cache_ é qualquer tipo de implementação de memória cuja o objetivo seja aum
 
 O _cache_ pode ser **Local** ou **Distribuído** (Servidor(es) de _Cache_).
 
-Se os dados forem **passíveis de alteração** o _cache_ precisa ter um **tempo de expiração** para ser renovado.
+Se os dados forem **passíveis de alteração** o _cache_ precisa ter um **tempo de expiração** para ser renovado. 
 
-Existem estratégias de _cache_ para evitar a **Inconsistência de Dados**.
+Se a **Inconsistência de Dados** for algo prejudicial ao negócio, como alternativa ao **tempo de expiração**, podemos implementar estratégias mais avançadas de _cache_ (**Write-Through** e **Write-Back** por exemplo.)
 <br>
 <br>
 
