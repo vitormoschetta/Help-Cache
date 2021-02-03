@@ -11,6 +11,7 @@ A segunda foi projetada para obter maior desempenho, por isso fica junto ao proc
 **2. Memória Permanente**:
 São memórias não voltáteis, isto é, não perdem seus dados na ausência de energia. Como exemplos temos o disco rígido (HD) e sua evolução, o SSD (Solid State Drive).
 <br>
+<br>
 
 
 ## Cache, em termos gerais
