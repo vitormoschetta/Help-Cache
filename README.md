@@ -60,7 +60,6 @@ Desvantagem: Aumento de latência na escrita.
 
 - **Write-Back**
 Escreve apenas no cache. As informações são gravadas em uma base de dados de tempos em tempos, conforme configurado.  
-
 Para este cenário o risco é mais alto,uma vez que um desligamento de máquina resultaria em perda total dos dados ainda não persistidos em uma base segura. 
 
 Por este motivo essa estratégia só possui sentido se utilizarmos **Servidores de Cache**, ou seja, o cache fica na memória de servidores próprios para esta tarefa. Eles replicam a mesma informação. Se possível, estes servidores devem ser mantidos em áreas geográficas diferentes.
