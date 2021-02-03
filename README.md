@@ -40,7 +40,7 @@ Os dados são gravados em uma memória permanente (banco de dados por exemplo). 
 Perceba que aquela consulta pesada à base de dados só será feita uma vez, a partir dali estes dados já estarão disponíveis no _cache_.
 
 
-<a name="alteracao"></a>
+<a name="expiracao"></a>
 
 ### Dados passíveis de alteração
 Caso estes dados sejam passíveis de alteração, um tempo deve ser configurado para que o _cache_ seja invalidado e renovado, ou seja, cada vez que o _cache_ atingir um determinado período de tempo uma nova consulta é feita à base de dados.
@@ -51,6 +51,8 @@ Perceba que desta forma as alterações efetuadas na base de dados podem não fi
 
 Em alguns cenários isso não acarretaria em muitos problemas, e, dependendo do negócio, o tempo de _cache_ pode ser ajustado e pronto, tudo certo. Em outros casos, porém, a **inconsistência** destes dados podem causar sérios problemas. 
 
+
+<a name="inconsistencia"></a>
 
 ### Inconsistência de dados
 Para resolver o problema de Inconsistência de Dados descrito acima, existem outras estratégias de _cache_ que podem ser implementadas:
@@ -95,7 +97,7 @@ O _cache_ pode ser **Local** ou **Distribuído** (Servidor(es) de _Cache_).
 
 Se os dados forem **[passíveis de alteração](#expiracao)** o _cache_ precisa ter um **tempo de expiração** para ser renovado. 
 
-Se a menor **Inconsistência de Dados** for algo prejudicial ao negócio, como alternativa ao **tempo de expiração**, podemos implementar estratégias mais avançadas de _cache_, **[Write-Through](#Write-Through)** e **[Write-Back](#Write-Back)** por exemplo.
+Se a menor **[Inconsistência de Dados](#inconsistencia)** for algo prejudicial ao negócio, como alternativa ao **tempo de expiração**, podemos implementar estratégias mais avançadas de _cache_, **[Write-Through](#Write-Through)** e **[Write-Back](#Write-Back)** por exemplo.
 <br>
 <br>
 
