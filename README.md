@@ -71,7 +71,7 @@ Perceba agora que podemos dividir em duas novas categorias os tipos/estratégias
 1. **Cache Local**   
 O cache está na memória do mesmo servidor que está rodando a aplicação.
 
-2. **Cache Distribuído**
+2. **Cache Distribuído**  
 O cache está na memória de servidor(s) separado(s) do servidor que está rodando a aplicação.
 
 É importante observar que qualquer uma das estratégias de cache descritas anteriormente (Write-Around, Write-Through e Write-Back) podem ser aplicadas tanto em Cache Local como em Cache Distribuído. Cada uma, porém, tem suas vantagens, desvantagens e cuidados a serem observados.
