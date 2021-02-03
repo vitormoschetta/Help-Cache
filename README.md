@@ -89,6 +89,8 @@ O _cache_ pode ser **Local** ou **Distribuído** (Servidor(es) de _Cache_).
 Se os dados forem **passíveis de alteração** o _cache_ precisa ter um **tempo de expiração** para ser renovado.
 
 Existem estratégias de _cache_ para evitar a **Inconsistência de Dados**.
+<br>
+<br>
 
 
 
