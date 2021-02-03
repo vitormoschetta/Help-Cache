@@ -79,4 +79,17 @@ O _cache_ está na memória de servidor(s) separado(s) do servidor que está rod
 <br>
 
 
+
+## Recapitulando
+
+_Cache_ é qualquer tipo de implementação de memória cuja o objetivo seja aumentar o tempo de resposta.
+
+O _cache_ pode ser **Local** ou **Distribuído** (Servidor(es) de _Cache_).
+
+Se os dados forem **passíveis de alteração** o _cache_ precisa ter um **tempo de expiração** para ser renovado.
+
+Existem estratégias de _cache_ para evitar a **Inconsistência de Dados**.
+
+
+
 ## Cache no .NET Core
