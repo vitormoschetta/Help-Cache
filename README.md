@@ -4,12 +4,11 @@
 
 Antes de falaros de cache precisamos falar sobre os  tipos de memória existentes. Basicamente elas subdividem em dois principais grupos:
 
-1. **Memória Temporária**:  
+**1. Memória Temporária**:  
 São memórias voláteis, isto é, perdem seus dados com ausência de energia. Como exemplos temos a memória RAM e a memória Cache (aqui estamos falando da memória cache física que fica junto ao processador na placa do microcomputador e não da estratégia de cache em aplicações, que falaremos mais adiante).  
-
 A segunda foi projetada para obter maior desempenho, por isso fica junto ao processador.
 
-2. **Memória Permanente**:
+**2. Memória Permanente**:
 São memórias não voltáteis, isto é, não perdem seus dados na ausência de energia. Como exemplos temos o disco rígido (HD) e sua evolução, o SSD (Solid State Drive).
 <br>
 
