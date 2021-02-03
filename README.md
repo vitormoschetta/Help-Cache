@@ -49,8 +49,6 @@ Perceba que desta forma as alterações efetuadas na base de dados podem não fi
 
 Em alguns cenários isso não acarretaria em muitos problemas, e, dependendo do negócio, o tempo de _cache_ pode ser ajustado e pronto, tudo certo. Em outros casos, porém, a inconsistência destes dados podem causar sérios problemas. 
 
-Entramos em um conceito importante: **Inconsistência de dados**.
-
 
 ### Inconsistência de dados
 Para resolver o problema de Inconsistência de Dados descrito acima, existem outras estratégias de _cache_ que podem ser implementadas:
