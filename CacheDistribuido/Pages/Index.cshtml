@@ -1,0 +1,75 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Exemplo de cache distribuído";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <button type="submit" asp-page-handler="ResetCachedTime" class="pull-right btn btn-danger">Redefinir
+                cache</button>
+            <h3 class="panel-title" style="line-height:2.1">‎Tempo armazenado em cache (UTC)‎</h3>
+        </div>
+        <div class="panel-body">
+            <p>Data/hora atual: @DateTime.UtcNow.ToString()</p>
+            <p>Data/Hora do último cache: @Model.CachedTimeUTC</p>
+        </div>
+    </div>
+</form>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Instruções</h3>
+    </div>
+    <div class="panel-body">
+        <p>Quando o aplicativo é iniciado, o tempo atual é armazenado em cache <code>cachedTimeUTC</code> com uma
+            expiração de 20 segundos.</p>
+
+        <p>Cada vez que esta página é carregada, o cache é verificado para o tempo armazenado em cache. Se o tempo
+            armazenado em cache não expirar, o tempo será exibido.</p>
+
+        <p>Se 20 segundos se passaram desde a última vez que o tempo de cache foi acessado (a última vez que esta página
+            foi carregada), a página exibe <code> Tempo de cache expirou</code>.</p>
+
+        <p>O tempo em cache pode ser atualizado imediatamente para o tempo atual selecionando o botão <strong>Redefinir
+                cache</strong>.</p>
+
+        <p>No ambiente Desenvolvimento, a amostra usa o Cache de Memória Distribuída e não requer um serviço de cache
+            externo.</p>
+
+        <h4>Distributed SQL Server Cache</h4>
+        <p>To activate the sample to use a Distributed SQL Server Cache:</p>
+        <ol>
+            <li>Create a SQL Server database. The sample specifies <code>DistCache</code> in the
+                <code>DistCache_ConnectionString</code> in the <em>appsettings.Production.json</em> file.
+            </li>
+            <li>Create a table to hold cached values. The sample specifies <code>TestCache</code> in
+                <code>Startup.ConfigureServices</code> where <code>AddDistributedSqlServerCache</code> is called to
+                register distributed caching services. The schema (<code>dbo</code>) is also set.
+            </li>
+            <li>Update the <code>DistCache_ConnectionString</code> in the <em>appsettings.Production.json</em> file to
+                point to the SQL Server instance, database, and table. If you use the default database name, schema, and
+                table name, you only need to update the SQL Server instance (<code>(localdb)\\MSSQLLocalDB</code>).</li>
+            <li>Set the <code>ASPNETCORE_ENVIRONMENT</code> environment variable to <code>Production</code>. In the
+                Production environment, the app uses the Distributed SQL Server Cache when it starts.</li>
+        </ol>
+        <h4>Distributed Redis Cache</h4>
+        <p>This sample can be changed to use a Distributed Redis Cache:</p>
+        <ol>
+            <li>
+                Change the preprocessor directive (<code>#define</code>) at the top of the <em>Startup.cs</em> file from
+                <code>SQLServer</code> to <code>Redis</code>:
+                <pre><code>#define Redis // SQLServer</code></pre>
+            </li>
+            <li>Install Redis on your local machine: Install the <a
+                    href="https://chocolatey.org/packages/redis-64/">Redis Chocolatey package</a> and run
+                <code>redis-server</code> from a command prompt.
+            </li>
+            <li>Set the <code>ASPNETCORE_ENVIRONMENT</code> environment variable to <code>Production</code>. In the
+                Production environment, the app uses the Distributed Redis Cache when it starts.</li>
+        </ol>
+    </div>
+</div>

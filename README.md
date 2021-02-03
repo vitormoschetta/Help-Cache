@@ -1,155 +1,71 @@
-# Help-Cache
+# Cache
 
-### Exemplo básico:
-```
-public class Produto
-{
-    private readonly IMemoryCache _cache;
-    private readonly ApplicationDbContext _context;
-    
-    public Product(IMemoryCache cache, ApplicationDbContext context)
-    {
-        _context = context;
-        _cache = cache;
-    }
-    
-    public IEnumerable<Produto> ListarProdutos()
-    {       
-        var meuCache = _cache.TryGetValue("ChaveProdutosEmCache", out IEnumerable<Produto> produtos);
-        if (meuCache != null)
-        {
-            if (produtos != null && produtos.Count > 0)
-                return produtos;                     
-        }
-        
-        produtos = _context.Produto.ToList();
-        
-        _cache.Set("ChaveProdutosEmCache", produtos, DateTime.Now.AddMinutes(30));       
-        
-        return produtos;        
-    }
-}
-```
+## Tipos de memória
 
-###### Vamos identificar as partes do nosso código:
-```
-_cache.Set("ChaveProdutosEmCache", produtos, DateTime.Now.AddMinutes(30));   
-```
-O código acima seta a nossa lista (produtos) em memória, dando a ela uma chave de identificação chamada "listaProdutosCache".
-O terceiro parâmetro é o tempo que a lista deve permanecer em memória. Em nosso exemplo, 30 minutos. 
+Antes de falaros de cache precisamos falar sobre os  tipos de memória existentes. Basicamente elas subdividem em dois principais grupos:
+
+1. Memória Temporária:  
+São memórias voláteis, isto é, perdem seus dados com ausência de energia. Como exemplos temos a memória RAM e a memória Cache. A segunda possui um maior desempenho, pois fica junto ao processador.
+
+2. Memória Permanente:
+São memórias não voltáteis, isto é, não perdem seus dados na ausência de energia. Como exemplos temos o disco rígido (HD) e sua evolução, o SSD (Solid State Drive).
 
 
-A próxima chamada que ocorrer ao método 'ListarProdutos()' nos próximos 30 minutos, vai entrar no condicional do cache, conforme a baixo:
+## Cache, o que é?
+Cache é qualquer tipo de implementação de memória cuja o objetivo seja aumentar o tempo de resposta.
+Com os avanços tecnológicos, vários tipos de cache foram desenvolvidos. Atualmente há cache em processadores, discos rígidos, sistemas, servidores, nas placas-mãe, clusters de bancos de dados, entre outros. 
 
-```
-var meuCache = _cache.TryGetValue("ChaveProdutosEmCache", out IEnumerable<Produto> produtos);
-if (meuCache != null)
-{
-    if (produtos != null && produtos.Count > 0)
-        return produtos;                     
-}
-```
-Veja que a primeira ação do método é verificar se existe algum objeto em memória com a identificação 'listaProdutosCache'. Se existir, ele traz a saída desse objeto em 
-memória, que na verdade é nossa lista de produtos 'IEnumerable<Produto> produtos'.
-    
-O Método 'TryGetValue', além de efetivar uma saída por referência a lista de produtos, retorna um _bool_ para a variável 'meuCache'. Retorna _true_ caso encontre um objeto 
-em memória com o nome da chave especificado. Com esse retorno fazemos a validação, se existir e não for _null_ ou vazia, retornamos a lista em memória.
+- No caso dos processadores, em que cache disponibiliza alguns dados já requisitados e outros a processar;
+- No caso dos navegadores web, em que as páginas são guardadas localmente para evitar consultas constantes à rede (especialmente úteis quando se navega por páginas estáticas);
+- Os servidores de aplicação também podem dispor de caches configurados pelo administrador. Neste caso o cache mantém dados de uma base em memória para melhorar o desempenho de consultas.
 
 
+## Cache de sistemas
+É sobre cache de sistemas e/ou servidores que vamos tratar.  
+Como podemos melhorar o desempenho de nossas aplicações utilizando cache?
 
-### Cache formado a partir de parâmetros
-O cache deve mudar sempre que os parâmetros mudarem. Logo, implemente uma verificação no código. No exemplo abaixo, verificamos se a categoria do produto informada é a mesma 
-da informada na última vez (guardada em cache). Em caso positivo retorna a lista em cache, ou seja, nem faz a consulta na base de dados:
-```
-public IEnumerable<Produto> ListarProdutos(string grupo)
-{       
-    var meuCache = _cache.TryGetValue("ChaveProdutosEmCache", out IEnumerable<Produto> produtos);
-    if (meuCache != null)
-    {
-        if (produtos != null && produtos.Count > 0) {            
-            if (produtos[0].Grupo == grupo)
-                return produtos;                
-        }
+Dependendo da quantidade e/ou do tipo de informações pesquisadas, uma consulta no banco de dados pode se tornar lenta. Repetir essas consultas constantemente certamente se tornará algo inviável.
 
-    }
+#### Como o cache funciona?
+A forma mais básica de uso de cache em sistemas ocorre da seguinte forma:
+Os dados são gravados em uma memória permanente (banco de dados por exemplo). O Administrador configura que uma determinada consulta de dados precisará primeiro passar pelo cache. As informações existindo em cache devem ser retornadas ao usuário dali mesmo. Não existindo as informações em cache, o sistema deverá buscá-las no banco de dados, gravá-las em cache e retornar ao usuário. Na próxima consulta as informações já estarão em cache. 
 
-    produtos = _context.Produto.Where(x => x.Grupo == grupo).ToList();
+Caso estes dados sejam passíveis de alteração, um tempo deve ser configurado para que o cache seja invalidado e renovado, ou seja, efetuar uma nova consulta a base de dados e gravar um novo cache. 
 
-    _cache.Set("ChaveProdutosEmCache", produtos, DateTime.Now.AddMinutes(30));       
+Essa estratégia de cache é conhecida como **Write-Around**.
 
-    return produtos;        
-}
+Perceba que desta forma as alterações efetuadas na base de dados podem não ficarem imediatamente disponíveis, afinal, existe um tempo que o cache deve respeitar para ser atualizado.
 
-```
+Entramos em um conceito importante: Inconsistência de dados.
 
 
-## Cache Individual
+#### Inconsistência de dados
+Para resolver o problema de Inconsistência de Dados descrito acima, existem outras estratégias de cache que podem ser implementadas:
 
-O cache In Memory do Asp.NET Core ocorre na memória do servidor. Isso quer dizer que esse mesmo cache é compartilhado por todos os usuários do sistema. 
+- **Write-Through**:  
+Uma alteração é gravada tanto na base de dados quanto no cache.   
+Vantagem: Alto nível de disponibilidade e consistência de dados.
+Desvantagem: Aumento de latência na escrita.
 
-Isso não seria um problema, a não ser que os dados sejam gerados a partir de parâmetros informados pelo usuário (veja o exemplo anterior: "Cache formado a partir de parâmetros"). Nesse caso, o cache estaria sempre sendo sobrescrito, pois cada usuário estaria informando parâmetros diferentes. Trabalhar com um único cache seria 
-inviável.
+- **Write-Back**
+Escreve apenas no cache. As informações são gravadas em uma base de dados de tempos em tempos, conforme configurado.  
 
-Para resolver esse problema, cada usuário deve ter o seu próprio cache no servidor. Para isso, basta setar um nome único como chave para o cache. Você pode usar o nome do usuário logado, por exemplo. 
+Para este cenário o risco é mais alto,uma vez que um desligamento de máquina resultaria em perda totoal dos dados ainda não persistidos em uma base segura. 
 
-No exemplo a baixo (com base no exemplo "Cache formado a partir de parâmetros"), concatenamos o nome do usuário logado com outra palavra para formar a chave do cache:
-```
-public IEnumerable<Produto> ListarProdutos(string grupo, string usuario)
-{       
-    var meuCache = _cache.TryGetValue("ChaveProdutosEmCache"+usuario, out IEnumerable<Produto> produtos);
-    if (meuCache != null)
-    {
-        if (produtos != null && produtos.Count > 0) {            
-            if (produtos[0].Grupo == grupo)
-                return produtos;                
-        }
+Por este motivo essa estratégia só possui sentido se utilizarmos **Servidores de Cache**, ou seja, o cache fica na memória de servidores próprios para esta tarefa. Eles replicam a mesma informação. Se possível, estes servidores devem ser mantidos em áreas geográficas diferentes.
 
-    }
-
-    produtos = _context.Produto.Where(x => x.Grupo == grupo).ToList();
-
-    _cache.Set("ChaveProdutosEmCache"+usuario, produtos, DateTime.Now.AddMinutes(30));       
-
-    return produtos;        
-}
-```
-
-Obs: Quando se tem apenas um servidor de aplicação, dependendo dos recursos de memória de da quantidade de usuários, podemos chegar a um ponto crítico com sobrecarga da memória.
-Isso pode ser contornado ao usar uma tabela temporária no lugar do cache. 
+Perceba agora que podemos dividir em duas novas categorias os tipos/estratégias de cache: **Cache Local** e **Cache Distribuido**
 
 
+1. **Cache Local**   
+O cache está na memória do mesmo servidor que está rodando a aplicação.
 
-## Cache de páginas parciais com Tag Helpers
-Usando View Component para renderizar PartialView
-```
-<cache expires-on="@TimeSpan.FromSeconds(600)">
-    @await Component.InvokeAsync("BlogPosts", new { tag = "popular" })
-</cache>
-```
+2. **Cache Distribuído**
+O cache está na memória de servidor(s) separado(s) do servidor que está rodando a aplicação.
 
-## Cache Distribuido Sql Server
+É importante observar que qualquer uma das estratégias de cache descritas anteriormente (Write-Around, Write-Through e Write-Back) podem ser aplicadas tanto em Cache Local como em Cache Distribuído. Cada uma, porém, tem suas vantagens, desvantagens e cuidados a serem observados.
+<br>
+<br>
 
-Add o pacote ao projeto:
-```
-dotnet add package Microsoft.Extensions.Caching.SqlServer --version 3.1.*
-```
 
-Instalar a ferramento cli:
-```
-dotnet tool install --global dotnet-sql-cache
-```
-
-Add Tabela Cache no BD via CLI:
-
-###### LocalDB:
-```
-dotnet sql-cache create "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SisaCache;Integrated Security=True; user=root; password=123456" dbo BaseEletronica
-```
-
-###### Sql Express:
-```
-dotnet sql-cache create "Server=localhost\SQLEXPRESS;Database=SisaCache; user=sa; password=123456" dbo BaseEletronica
-```
-
-Obs: O BD precisa já existir antes do comando acima. 
-'BaseEletronica' é o nome da tabela que será criada.
+## Cache no .NET Core
