@@ -30,7 +30,7 @@ Com os avanços tecnológicos, vários tipos de cache foram desenvolvidos. Atual
 É sobre _cache_ de aplicação e/ou servidores que vamos tratar.  
 Como podemos melhorar o desempenho de nossas aplicações utilizando estratégias de _cache_?
 
-Dependendo da quantidade e/ou do tipo de informações pesquisadas, uma consulta no banco de dados pode se tornar lenta. Repetir essas consultas constantemente certamente se tornará algo inviável.
+Dependendo da quantidade e/ou do tipo de informações pesquisadas, essa consulta no banco de dados pode se tornar lenta. E repetir essas consultas constantemente acabará se tornando uma tarefa pesada e trará uma péssima experiência ao usuário.
 
 ### Como o cache de aplicação funciona?
 Vamos montar um cenário para entender como o cache de aplicação é implementado na sua forma mais básica:
