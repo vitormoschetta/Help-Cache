@@ -2,7 +2,7 @@
 
 ## Tipos de memória
 
-Antes de falaros de cache precisamos falar sobre os  tipos de memória existentes. Basicamente elas subdividem em dois principais grupos:
+Antes de falarmos de cache precisamos falar sobre os dois grupos básicos de memória:
 
 **1. Memória Temporária**:  
 São memórias voláteis, isto é, perdem seus dados com ausência de energia. Como exemplos temos a memória RAM e a memória Cache (aqui estamos falando da memória cache física que fica junto ao processador na placa do microcomputador e não da estratégia de cache em aplicações, que falaremos mais adiante).  
