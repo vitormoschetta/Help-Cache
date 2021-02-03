@@ -45,7 +45,7 @@ Essa estratégia de cache é conhecida como **Write-Around**.
 
 Perceba que desta forma as alterações efetuadas na base de dados podem não ficar imediatamente disponíveis, afinal, existe um tempo que o cache deve respeitar para ser atualizado. 
 
-Em alguns cenários isso não teria problema, em outros, porém, a inconsistência destes dados podem causar sérios problemas. Cabe ao analista avaliar o seu caso. 
+Em alguns cenários isso não acarretaria em muitos problemas, e, dependendo do negócio, o tempo de cache pode ser ajustado e pronto, tudo certo. Em outros casos, porém, a inconsistência destes dados podem causar sérios problemas. 
 
 Entramos em um conceito importante: **Inconsistência de dados**.
 
