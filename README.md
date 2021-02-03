@@ -35,10 +35,13 @@ Dependendo da quantidade e/ou do tipo de informações pesquisadas, essa consult
 ### Como o cache de aplicação funciona?
 Vamos montar um cenário para entender como o cache de aplicação é implementado na sua forma mais básica:
 
-Os dados são gravados em uma memória permanente (banco de dados por exemplo). O Administrador configura que uma determinada consulta de dados precisará primeiro passar pelo _cache_. Existindo as informações nesse cache, devem elas serem retornadas ao usuário dali mesmo. Não existindo, o sistema deverá buscá-las no banco de dados, então gravá-las em cache e retornar ao usuário. Na próxima consulta as informações já estarão em _cache_. 
+Os dados são gravados em uma memória permanente (banco de dados por exemplo). O Administrador configura que uma determinada consulta de dados precisará primeiro passar pelo _cache_. Existindo as informações nesse cache, devem elas serem retornadas ao usuário dali mesmo. Não existindo, o sistema deverá buscá-las no banco de dados, então gravá-las em cache e retornar ao usuário. 
+
+Perceba que aquela consulta pesada à base de dados só será feita uma vez, a partir dali estes dados já estarão disponíveis no _cache_.
+
 
 ### Dados passíveis de alteração
-Caso estes dados sejam passíveis de alteração, um tempo deve ser configurado para que o cache seja invalidado e renovado, ou seja, efetuar uma nova consulta a base de dados e gravar um novo _cache_. 
+Caso estes dados sejam passíveis de alteração, um tempo deve ser configurado para que o _cache_ seja invalidado e renovado, ou seja, cada vez que o _cache_ atingir um determinado período de tempo uma nova consulta é feita à base de dados.
 
 Essa estratégia de _cache_ é conhecida como **Write-Around**.
 
