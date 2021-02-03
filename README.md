@@ -54,6 +54,7 @@ Em alguns cenários isso não acarretaria em muitos problemas, e, dependendo do 
 Para resolver o problema de Inconsistência de Dados descrito acima, existem outras estratégias de _cache_ que podem ser implementadas:
 
 <a name="ancora"></a>
+
 - **Write-Through**:  
 Uma alteração é gravada tanto na base de dados quanto no _cache_.   
 Vantagem: Alto nível de disponibilidade e consistência de dados.  
