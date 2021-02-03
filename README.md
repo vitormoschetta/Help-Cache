@@ -88,7 +88,7 @@ O _cache_ pode ser **Local** ou **Distribuído** (Servidor(es) de _Cache_).
 
 Se os dados forem **passíveis de alteração** o _cache_ precisa ter um **tempo de expiração** para ser renovado. 
 
-Se a menor **Inconsistência de Dados** for algo prejudicial ao negócio, como alternativa ao **tempo de expiração**, podemos implementar estratégias mais avançadas de _cache_, <a id="Write-Through">**Write-Through**</a> e **Write-Back** por exemplo.
+Se a menor **Inconsistência de Dados** for algo prejudicial ao negócio, como alternativa ao **tempo de expiração**, podemos implementar estratégias mais avançadas de _cache_, <a id="Write-Through">Write-Through</a> e **Write-Back** por exemplo.
 <br>
 <br>
 
