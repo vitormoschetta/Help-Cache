@@ -13,7 +13,7 @@ São memórias não voltáteis, isto é, não perdem seus dados na ausência de 
 <br>
 
 
-## Cache, o que é?
+## Cache, em termos gerais
 Cache é qualquer tipo de implementação de memória cuja o objetivo seja aumentar o tempo de resposta.
 Com os avanços tecnológicos, vários tipos de cache foram desenvolvidos. Atualmente há cache em processadores, discos rígidos, sistemas, servidores, nas placas-mãe, clusters de bancos de dados, entre outros. 
 
