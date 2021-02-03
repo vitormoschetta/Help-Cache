@@ -95,3 +95,8 @@ Existem estratégias de _cache_ para evitar a **Inconsistência de Dados**.
 
 
 ## Cache no .NET Core
+
+
+
+https://docs.microsoft.com/pt-br/aspnet/core/performance/caching/memory?view=aspnetcore-5.0
+https://docs.microsoft.com/pt-br/aspnet/core/performance/caching/distributed?view=aspnetcore-5.0
