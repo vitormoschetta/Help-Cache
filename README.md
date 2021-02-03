@@ -23,39 +23,43 @@ Com os avanços tecnológicos, vários tipos de cache foram desenvolvidos. Atual
 - No caso dos **navegadores web**, o cache mantém o conteúdo estático (HTML, CSS, JavaScript, imagens, etc) em memória local para evitar consultas constantes à rede;
 
 - Os **servidores de aplicação** também podem dispor de caches configurados pelo administrador. Neste caso o cache mantém dados em memória para melhorar o desempenho de consultas à base de dados, por exemplo.
+<br>
+<br>
 
 
 ## Cache de sistemas
 É sobre cache de sistemas e/ou servidores que vamos tratar.  
-Como podemos melhorar o desempenho de nossas aplicações utilizando cache?
+Como podemos melhorar o desempenho de nossas aplicações utilizando estratégias de cache?
 
 Dependendo da quantidade e/ou do tipo de informações pesquisadas, uma consulta no banco de dados pode se tornar lenta. Repetir essas consultas constantemente certamente se tornará algo inviável.
 
-#### Como o cache funciona?
-A forma mais básica de uso de cache em sistemas ocorre da seguinte forma:
-Os dados são gravados em uma memória permanente (banco de dados por exemplo). O Administrador configura que uma determinada consulta de dados precisará primeiro passar pelo cache. As informações existindo em cache devem ser retornadas ao usuário dali mesmo. Não existindo as informações em cache, o sistema deverá buscá-las no banco de dados, gravá-las em cache e retornar ao usuário. Na próxima consulta as informações já estarão em cache. 
+### Como o cache de dados em um sistema funciona?
+Vamos montar um cenário para entender como o cache é implementado na sua forma mais básica:
 
+Os dados são gravados em uma memória permanente (banco de dados por exemplo). O Administrador configura que uma determinada consulta de dados precisará primeiro passar pelo cache. Existindo as informações nesse cache, devem elas serem retornadas ao usuário dali mesmo. Não existindo, o sistema deverá buscá-las no banco de dados, então gravá-las em cache e retornar ao usuário. Na próxima consulta as informações já estarão em cache. 
+
+### Dados passíveis de alteração
 Caso estes dados sejam passíveis de alteração, um tempo deve ser configurado para que o cache seja invalidado e renovado, ou seja, efetuar uma nova consulta a base de dados e gravar um novo cache. 
 
 Essa estratégia de cache é conhecida como **Write-Around**.
 
-Perceba que desta forma as alterações efetuadas na base de dados podem não ficarem imediatamente disponíveis, afinal, existe um tempo que o cache deve respeitar para ser atualizado.
+Perceba que desta forma as alterações efetuadas na base de dados podem não ficar imediatamente disponíveis, afinal, existe um tempo que o cache deve respeitar para ser atualizado.
 
-Entramos em um conceito importante: Inconsistência de dados.
+Entramos em um conceito importante: **Inconsistência de dados**.
 
 
-#### Inconsistência de dados
+### Inconsistência de dados
 Para resolver o problema de Inconsistência de Dados descrito acima, existem outras estratégias de cache que podem ser implementadas:
 
 - **Write-Through**:  
 Uma alteração é gravada tanto na base de dados quanto no cache.   
-Vantagem: Alto nível de disponibilidade e consistência de dados.
+Vantagem: Alto nível de disponibilidade e consistência de dados.  
 Desvantagem: Aumento de latência na escrita.
 
 - **Write-Back**
 Escreve apenas no cache. As informações são gravadas em uma base de dados de tempos em tempos, conforme configurado.  
 
-Para este cenário o risco é mais alto,uma vez que um desligamento de máquina resultaria em perda totoal dos dados ainda não persistidos em uma base segura. 
+Para este cenário o risco é mais alto,uma vez que um desligamento de máquina resultaria em perda total dos dados ainda não persistidos em uma base segura. 
 
 Por este motivo essa estratégia só possui sentido se utilizarmos **Servidores de Cache**, ou seja, o cache fica na memória de servidores próprios para esta tarefa. Eles replicam a mesma informação. Se possível, estes servidores devem ser mantidos em áreas geográficas diferentes.
 
