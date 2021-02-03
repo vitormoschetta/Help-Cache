@@ -18,9 +18,11 @@ São memórias não voltáteis, isto é, não perdem seus dados na ausência de 
 Cache é qualquer tipo de implementação de memória cuja o objetivo seja aumentar o tempo de resposta.
 Com os avanços tecnológicos, vários tipos de cache foram desenvolvidos. Atualmente há cache em processadores, discos rígidos, sistemas, servidores, nas placas-mãe, clusters de bancos de dados, entre outros. 
 
-- No caso dos **processadores**, em que cache disponibiliza alguns dados já requisitados e outros a processar;
-- No caso dos **navegadores web**, em que as páginas são guardadas localmente para evitar consultas constantes à rede (especialmente úteis quando se navega por páginas estáticas);
-- Os **servidores de aplicação** também podem dispor de caches configurados pelo administrador. Neste caso o cache mantém dados de uma base em memória para melhorar o desempenho de consultas à base de dados, por exemplo.
+- No caso dos **processadores**, o cache disponibiliza alguns dados já requisitados anteriormente à memoria RAM/Disco Rígido; 
+
+- No caso dos **navegadores web**, o cache mantém o conteúdo estático (HTML, CSS, JavaScript, imagens, etc) em memória local para evitar consultas constantes à rede;
+
+- Os **servidores de aplicação** também podem dispor de caches configurados pelo administrador. Neste caso o cache mantém dados em memória para melhorar o desempenho de consultas à base de dados, por exemplo.
 
 
 ## Cache de sistemas
