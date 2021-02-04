@@ -116,7 +116,7 @@ No diretório **CacheLocal/** temos uma aplicação MVC que implementa o _cache_
 
 No .NET Core, além das estratégias de _cache_ já estudadas até aqui, podemos implementar ainda um outro método de _cache_ distribuído: **Distributed SQL Server Cache**, ou Cache SQL Server distribuído.
 
-Veja esse tipo de implementação e leia mais sobre no diretório **CacheDistribuido/SqlServerCache/**.
+Veja esse tipo de implementação e leia mais sobre, no diretório "**CacheDistribuido/SqlServerCache/**".
 <br>
 
 
