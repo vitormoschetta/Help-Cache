@@ -1,0 +1,75 @@
+@using App02.Utils
+@model PaginatedList<Order>
+
+<div class="col-md-12">    
+
+    <div class="card">                   
+        <div class="card-body">   
+            <div id="tabela-index">
+                
+                <table class="table table-hover table-sm">   
+                    <thead>     
+                        <tr>
+                            <th>Id</th>           
+                            <th>Custommer</th>
+                            <th>Product</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>                        
+                        @foreach (var item in Model)
+                        {                           
+                            <tr>
+                                <td>@item.Id</td>            
+                                <td>@item.Custommer</td>  
+                                @foreach (var i in item.OrderProducts)
+                                    {
+                                        <dl>@i.Product.Name</dl> 
+                                    }      
+                                                       
+                            </tr>
+                        }                    
+                    </tbody>
+                </table>
+
+
+            </div>                                                                                
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ////////////////// Controle de paginação ///////////////////////-->
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";   
+    var prev = Model.PageIndex - 1;
+    var next = Model.PageIndex + 1;        
+}
+
+<br />
+<div style="margin-left: 2em;">
+    Página @Model.PageIndex de @Model.TotalPages
+</div>
+
+<div class="row">
+    <div class="col col-4">
+        <a href="#" onclick="PaginacaoCliente(@prev)" class="btn btn-light @prevDisabled">
+            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+        </a>
+        <a href="#" onclick="PaginacaoCliente(@next)" class="btn btn-light @nextDisabled">
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        </a>
+    </div>
+    
+    <div class="col">
+        <a href="#" onclick="PaginacaoCliente(1)" class="btn btn-light @prevDisabled">
+            Primeira Página
+        </a>
+        <a href="#" onclick="PaginacaoCliente(@Model.TotalPages)" class="btn btn-light @nextDisabled">
+            Última Página
+        </a>
+    </div>
+</div>

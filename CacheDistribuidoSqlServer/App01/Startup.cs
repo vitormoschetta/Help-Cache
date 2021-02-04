@@ -2,45 +2,40 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App01.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace CacheDistribuido
+namespace App01
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
-        public IWebHostEnvironment  Environment { get; }
 
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllersWithViews();
 
-            if (Environment.IsDevelopment()) 
+            services.AddDbContext<AppDbContext>(options =>
+               options.UseSqlite(Configuration.GetConnectionString("SQLite")));
+
+            services.AddDistributedSqlServerCache(options =>
             {
-                services.AddDistributedMemoryCache();
-            }
-            else
-            {
-                services.AddDistributedSqlServerCache(options =>
-                {
-                    options.ConnectionString = Configuration["DistCache_ConnectionString"];
-                    options.SchemaName = "dbo";
-                    options.TableName = "TestCache";
-                });
-            }
-                
+                options.ConnectionString = Configuration.GetConnectionString("SqlServerCache");
+                options.SchemaName = "dbo";
+                options.TableName = "TestCache";
+            });
         }
 
         
@@ -48,15 +43,13 @@ namespace CacheDistribuido
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();                
+                app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Error");
-                
+                app.UseExceptionHandler("/Home/Error");                
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -66,7 +59,9 @@ namespace CacheDistribuido
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
