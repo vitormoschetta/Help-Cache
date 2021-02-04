@@ -107,7 +107,7 @@ Se a menor **[Inconsistência de Dados](#inconsistencia)** for algo prejudicial 
 No .NET Core podemos utilizar qualquer um dos conceitos já estudados até aqui. 
 
 ## **Cache Local**  
-No diretório "**CacheLocal/**" temos uma aplicação MVC que implementa o _cache_ local, aquele mais simples. 
+No diretório "**CacheLocal/**" temos uma aplicação MVC que implementa um exemplo de _cache_ local. 
 
 
 ## **Cache Distribuído**  
@@ -123,7 +123,3 @@ Veja esse tipo de implementação e leia mais sobre, no diretório "**CacheDistr
 ### Distributed Redis Cache
 
 
-
-
-https://docs.microsoft.com/pt-br/aspnet/core/performance/caching/memory?view=aspnetcore-5.0
-https://docs.microsoft.com/pt-br/aspnet/core/performance/caching/distributed?view=aspnetcore-5.0
