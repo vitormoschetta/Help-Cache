@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CacheMemoria.Data;
-using CacheMemoria.Models;
-using CacheMemoria.Utils;
+using CacheLocal.Data;
+using CacheLocal.Models;
+using CacheLocal.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace CacheMemoria.Controllers
+namespace CacheLocal.Controllers
 {
     public class OrderController : Controller
     {

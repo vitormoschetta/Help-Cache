@@ -1,7 +1,7 @@
-using CacheMemoria.Models;
+using CacheLocal.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CacheMemoria.Data
+namespace CacheLocal.Data
 {
     public class AppDbContext : DbContext
     {

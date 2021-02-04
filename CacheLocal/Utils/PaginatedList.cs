@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CacheMemoria.Utils
+namespace CacheLocal.Utils
 {
     public class PaginatedList<T> : List<T>
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CacheMemoria.Data.Migrations
+namespace CacheLocal.Data.Migrations
 {
     public partial class inity : Migration
     {

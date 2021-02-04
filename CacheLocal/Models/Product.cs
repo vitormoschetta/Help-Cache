@@ -1,4 +1,4 @@
-namespace CacheMemoria.Models
+namespace CacheLocal.Models
 {
     public class Product
     {

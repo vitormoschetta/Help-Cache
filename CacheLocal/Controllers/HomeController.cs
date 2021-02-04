@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CacheMemoria.Models;
+using CacheLocal.Models;
 
-namespace CacheMemoria.Controllers
+namespace CacheLocal.Controllers
 {
     public class HomeController : Controller
     {

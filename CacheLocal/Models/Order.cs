@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CacheMemoria.Models
+namespace CacheLocal.Models
 {
     public class Order
     {

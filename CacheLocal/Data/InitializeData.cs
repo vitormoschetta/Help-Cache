@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CacheMemoria.Models;
+using CacheLocal.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CacheMemoria.Data
+namespace CacheLocal.Data
 {
     public class InitializeData
     {
