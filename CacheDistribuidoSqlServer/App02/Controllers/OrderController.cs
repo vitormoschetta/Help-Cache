@@ -50,7 +50,12 @@ namespace App02.Controllers
                 .ToListAsync();
 
             string stringOrders = JsonConvert.SerializeObject(orders);
-            _cache.SetString("Orders", stringOrders);
+            DistributedCacheEntryOptions options = new DistributedCacheEntryOptions
+            {
+                SlidingExpiration = TimeSpan.FromSeconds(20),
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1)
+            };
+            await _cache.SetStringAsync("Orders", stringOrders, options);
 
             listaPaginada = PaginatedList<Order>.Create(orders, 1, itensPorPagina);
             return View(listaPaginada);

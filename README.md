@@ -175,7 +175,6 @@ O mesmo vale para o processo inverso: Ao efetuar o _GetString_ da interface _IDi
 
 ###### Execute os dois Apps e veja que após o primeiro acesso o retorno será muito mais rápido. E mais, você pode reiniciar sua aplicação que o cache não se perde, afinal, está em um banco de dados.
 <br>
-<br>
 
 
 #### Distributed Redis Cache
