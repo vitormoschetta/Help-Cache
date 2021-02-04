@@ -36,7 +36,7 @@ namespace App01.Controllers
             PaginatedList<Order> listaPaginada;
             var itensPorPagina = 5;
 
-            string ordersCache = _cache.GetString("Orders");
+            string ordersCache = await _cache.GetStringAsync("Orders");
             if (ordersCache != null)
             {                
                 var listOrders = JsonConvert.DeserializeObject<List<Order>>(ordersCache);
