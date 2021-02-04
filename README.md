@@ -107,7 +107,7 @@ Se a menor **[Inconsistência de Dados](#inconsistencia)** for algo prejudicial 
 No .NET Core podemos utilizar qualquer um dos conceitos já estudados até aqui. 
 
 ### **Cache Local**  
-No diretório **CacheMemoria** temos uma aplicação MVC que implementa o _cache_ local, aquele mais simples. 
+No diretório **CacheLocal/** temos uma aplicação MVC que implementa o _cache_ local, aquele mais simples. 
 
 
 ### **Cache Distribuído**  
@@ -115,6 +115,8 @@ No diretório **CacheMemoria** temos uma aplicação MVC que implementa o _cache
 #### **Distributed SQL Server Cache**
 
 No .NET Core, além das estratégias de _cache_ já estudadas até aqui, podemos implementar ainda um outro método de _cache_ distribuído: **Distributed SQL Server Cache**, ou Cache SQL Server distribuído.
+
+Veja esse tipo de implementação e leia mais sobre no diretório **CacheDistribuido/SqlServerCache/**.
 <br>
 
 
